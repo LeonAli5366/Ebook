@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Bookshelf = ({d}) => {
     return (
-        <Link className="w-full flex flex-col items-center justify-between gap-5 mb-16 shadow-lg">
+        <Link className="w-full flex flex-col items-center justify-between gap-5 mb-16 shadow-lg hover:scale-110 transition-[300ms]">
             <div className="max-h-[260px] h-full w-full border-b">
             <img src={d.img} alt="" className="w-full h-full object-scale-down" />
             </div>

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Bookshelf from "../../components/Bookshelf/Bookshelf";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination,Autoplay } from "swiper/modules";
 
 const Home = () => {
   const data = [
@@ -60,10 +64,10 @@ const Home = () => {
     },
   ];
 
-  const [active, setActive] = useState('1')
-  const handleClick = (event)=>{
-    setActive(event.target.id)
-  }
+  // const [active, setActive] = useState('1')
+  // const handleClick = (event)=>{
+  //   setActive(event.target.id)
+  // }
   return (
     <div className="flex flex-col">
       {/* <div className="flex flex-row items-center justify-between gap-5 w-full">
@@ -80,7 +84,7 @@ const Home = () => {
       {/* <div className="w-full h-[500px]">
         <img src="https://cdn.youcan.shop/stores/ebooksoffice/others/VcjuXZHLo1exLor9dw7oD4p0y6jzxatmv7Wv1dUL.jpeg" alt="" className="w-full h-full object-cover object-top" />
       </div> */}
-      <div className="w-full h-[500px] flex flex-row items-center justify-center gap-5 my-10">
+      {/* <div className="w-full h-[500px] flex flex-row items-center justify-center gap-5 my-10">
         <div
           style={{
             backgroundImage: `url("https://i.postimg.cc/T3JKShdQ/international-day-education-cartoon-style.jpg")`
@@ -130,6 +134,67 @@ const Home = () => {
           className={`bg-center   rounded-[2rem] h-full img ${active === '6' ?'w-[700px]': 'w-[50px] '}`}
         ></div>
         
+      </div> */}
+      <div className="w-full">
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          modules={[Pagination,Autoplay]}
+          className="
+        h-[500px] w-full"
+        >
+          <SwiperSlide className="w-full h-full">
+            <img
+              src="https://i.postimg.cc/T3JKShdQ/international-day-education-cartoon-style.jpg"
+              className="w-full object-cover h-full"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <img
+              src="https://i.postimg.cc/HsgHKgSk/open-book-with-fairytale-scene.jpg"
+              className="w-full object-cover h-full"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <img
+              src="https://i.postimg.cc/15D9vtst/scriptures-candles-wooden-table.jpg"
+              className="w-full object-cover h-full"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <img
+              src="https://i.postimg.cc/yN33jR6G/view-3d-book-with-student.jpg"
+              className="w-full object-cover h-full"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <img
+              src="https://i.postimg.cc/tgDSyLGP/creative-composition-world-book-day.jpg"
+              className="w-full object-cover h-full"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full h-full">
+            <img
+              src="https://i.postimg.cc/ncyf92Gs/front-view-stacked-books-ladders-education-day.jpg"
+              className="w-full object-cover h-full"
+              alt=""
+            />
+          </SwiperSlide>
+        </Swiper>
       </div>
       <div className="w-full flex flex-col items-center pt-10">
         <span className="text-3xl font-bold">Our Bookshelf</span>
@@ -141,8 +206,12 @@ const Home = () => {
         </div>
       </div>
       <div className="w-full flex flex-col items-center justify-center">
-
-      <Link to='/allproducts' className="border border-black hover:text-white hover:bg-black btn rounded text-black px-5 py-2">View All</Link>
+        <Link
+          to="/allproducts"
+          className="border border-black hover:text-white hover:bg-black btn rounded text-black px-5 py-2"
+        >
+          View All
+        </Link>
       </div>
     </div>
   );
