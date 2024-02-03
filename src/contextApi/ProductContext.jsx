@@ -8,7 +8,6 @@ const ProductContext = ({ children }) => {
   //  all state
   const [products, setProducts] = useState([]);
   const [refresh, setRefresh] = useState(1);
-
   // use effect
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/product/allProducts")
