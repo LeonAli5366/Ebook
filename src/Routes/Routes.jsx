@@ -3,10 +3,10 @@ import App from "../App";
 import Home from "../pages/Home/Home";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import AddToCart from "../pages/AddToCart/AddToCart";
-import AllProducts from "../pages/AllProducts/AllProducts";
 import Login from "../pages/Authentication/Login/Login";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import Profile from "../Profile/Profile";
+import AllProduct from "../pages/AllProducts/AllProduct";
 import AdminDasahbordSinglePageEdit from "../Profile/AdminDashbord/AdminDashbordPages/AdminDasahbordSinglePageEdit";
 
 export const router = createBrowserRouter([
@@ -23,12 +23,13 @@ export const router = createBrowserRouter([
         element:<ContactUs/>
       },
       {
-        path:`/addtocart`,
-        element:<AddToCart/>
+        path:`/addtocart/:id`,
+        element:<AddToCart/>,
+        loader:({params})=>fetch(`http://localhost:5000/api/v1/product/product/single/${params.id}`)
       },
       {
         path:'/allproducts',
-        element:<AllProducts/>
+        element:<AllProduct/>
       },
       {
         path: "/login",
