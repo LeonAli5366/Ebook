@@ -1,15 +1,18 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
-const PayPalPayment = () => {
-  // const {_id, name, price, discount} = d.product.product;
-  const AllItem = useSelector((state) => {
-    return state.cart;
-  });
+const PayPalPayment = (product) => {
+  const { price, discount } = product.product.product;
+  // const AllItem = useSelector((state) => {
+  //   return state.cart;
+  // });
 
   const serverUrl = "http://localhost:5000";
-  // const discountedPrice = (price-(parseInt((price * discount)/100))).toFixed(2);
+  const discountedPrice = (price - parseInt((price * discount) / 100)).toFixed(
+    2
+  );
+
   const createOrder = async () => {
     // Order is created on the server and the order id is returned
     return await fetch(`${serverUrl}/api/orders`, {
@@ -21,7 +24,7 @@ const PayPalPayment = () => {
       // like product skus and quantities
       body: JSON.stringify({
         cart: {
-         subtotal: AllItem.cartTotalAmount
+          subtotal: discountedPrice,
         },
       }),
     })
@@ -51,7 +54,8 @@ const PayPalPayment = () => {
       });
   };
   return (
-    <PayPalButtons className="w-full"
+    <PayPalButtons
+      className="w-full"
       createOrder={(data, actions) => createOrder(data, actions)}
       onApprove={(data, actions) => onApprove(data, actions)}
     />

@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContex } from "../../contextApi/UserContex";
-import { IoCartOutline } from "react-icons/io5";
+// import { IoCartOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const { user } = useContext(AuthContex);
@@ -18,7 +18,7 @@ const Navbar = () => {
             <Link to='/allproducts'>All Products</Link>
             <Link to='/contactus'>Contact Us</Link>
       <Link to={`${user?.email ? "/profile" : "/login"}`}>Account</Link>
-      <label htmlFor="my-drawer-4" className="cursor-pointer"><IoCartOutline size={25} color="#4086C6"/></label>
+      {/* <label htmlFor="my-drawer-4" className="cursor-pointer"><IoCartOutline size={25} color="#4086C6"/></label> */}
     </div>
   );
 };

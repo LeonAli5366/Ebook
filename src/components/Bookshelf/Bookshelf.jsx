@@ -5,7 +5,7 @@ const Bookshelf = ({d}) => {
     const price = (parseInt(d.price)).toFixed(2);
     const discountedPrice = (d.price-(parseInt((d.price * d.discount)/100))).toFixed(2);
     return (
-        <Link to={`/addtocart/${d._id}`} className="w-full flex flex-col items-center justify-between gap-5 mb-16 shadow-lg hover:scale-110 transition-[300ms]">
+        <Link to={`/addtocart/${d._id}`} className="w-full flex flex-col items-center justify-between gap-5 mb-16 shadow hover:shadow-lg btn-transition">
             <div className="max-h-[260px] h-full w-full border-b">
             <img src={`http://localhost:5000/api/v1/product/product/photo?id=${d._id}`} alt="" className="w-full h-full object-scale-down" />
             </div>
