@@ -7,6 +7,7 @@ import Login from "../pages/Authentication/Login/Login";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import Profile from "../Profile/Profile";
 import AllProduct from "../pages/AllProducts/AllProduct";
+import AdminDasahbordSinglePageEdit from "../Profile/AdminDashbord/AdminDashbordPages/AdminDasahbordSinglePageEdit";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
         path: "/profile",
         element: <Profile></Profile>,
       },
+      {
+        path : "/product/single/:id",
+        element: <AdminDasahbordSinglePageEdit></AdminDasahbordSinglePageEdit>,
+        loader : ({params}) => fetch(`http://localhost:5000/api/v1/product/product/single/${params.id}`)
+      }
     ],
   },
 ]);

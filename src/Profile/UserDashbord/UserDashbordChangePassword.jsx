@@ -28,7 +28,7 @@ const UserDashbordChangePassword = ({ showPage, setShowPage }) => {
       email: user?.email,
     };
 
-    console.log(passwordData);
+    
 
     fetch("http://localhost:5000/api/v1/user/password/change", {
       method: "PATCH",
@@ -39,7 +39,7 @@ const UserDashbordChangePassword = ({ showPage, setShowPage }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         if (data.status === "success") {
           toast.success("Password changed successfully");
           form.reset();

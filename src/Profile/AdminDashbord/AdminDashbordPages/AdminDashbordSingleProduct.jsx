@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AdminDashbordSingleProduct = ({ product }) => {
-  const { name, price, discount, description, _id } = product;
+  const { name, price, discount, description, _id, writer } = product;
   return (
-    <div className="card w-80 bg-base-100 shadow-xl cursor-pointer border">
+    <Link
+      to={`/product/single/${_id}`}
+      className="card w-80 bg-base-100 shadow-xl cursor-pointer border"
+    >
       <figure>
         <img
           className="h-[250px] p-3"
@@ -15,6 +19,7 @@ const AdminDashbordSingleProduct = ({ product }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">Name: {name}</h2>
+        <h2 className="">Writer: {writer}</h2>
         <h2 className="">Price: {price}</h2>
         <h2 className="">discount: {discount}%</h2>
         <h2 className="">
@@ -23,7 +28,7 @@ const AdminDashbordSingleProduct = ({ product }) => {
             : description}
         </h2>
       </div>
-    </div>
+    </Link>
   );
 };
 

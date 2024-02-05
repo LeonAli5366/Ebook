@@ -9,11 +9,14 @@ const AdminDashbordCreateProduct = ({ showPage, setShowPage }) => {
   const { refresh, setRefresh } = useContext(AllProducts);
   // all state
   const [error, setError] = useState("");
+  const [createSpiner, setCreateSpiner] = useState(false)
 
   const handleCreateProduct = (event) => {
+    setCreateSpiner(true)
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const writer = form.writer.value;
     const price = form.price.value;
     const discount = form.discount.value;
     const productLink = form.productLink.value;
@@ -23,6 +26,7 @@ const AdminDashbordCreateProduct = ({ showPage, setShowPage }) => {
     const productData = new FormData();
 
     productData.append("name", name);
+    productData.append("writer", writer);
     productData.append("price", price);
     productData.append("discount", discount);
     productData.append("productLink", productLink);
@@ -41,8 +45,10 @@ const AdminDashbordCreateProduct = ({ showPage, setShowPage }) => {
           scrollToTop();
           form.reset();
           setRefresh(refresh + 1);
+          setCreateSpiner(false)
         } else {
           setError(data.message);
+          setCreateSpiner(false)
         }
       });
   };
@@ -61,6 +67,19 @@ const AdminDashbordCreateProduct = ({ showPage, setShowPage }) => {
             type="text"
             placeholder="Product Name"
             name="name"
+            className="input input-bordered"
+            required
+          />
+        </div>
+        {/* Writer Name */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text ml-3">Writer Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Writer Name"
+            name="writer"
             className="input input-bordered"
             required
           />
@@ -121,18 +140,22 @@ const AdminDashbordCreateProduct = ({ showPage, setShowPage }) => {
           <label className="label">
             <span className="label-text ml-3">Product Description</span>
           </label>
-          <input
+          <textarea
             type="text"
             name="description"
             placeholder="Product Description"
-            className="textarea"
+            className="textarea h-[200px]"
             required
           />
         </div>
         <h1 className="text-red-600 mt-2 ml-3">{error}</h1>
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">
-            Create Product
+            Create Product <span
+                className={`loading loading-spinner ${
+                  createSpiner ? "" : "hidden"
+                }`}
+              ></span>
           </button>
         </div>
       </form>
