@@ -1,12 +1,15 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContex } from "../../contextApi/UserContex";
 // import { useSelector } from "react-redux";
 
 const PayPalPayment = (product) => {
-  const { price, discount } = product.product.product;
+  const { price, discount, _id } = product.product.product;
   // const AllItem = useSelector((state) => {
   //   return state.cart;
   // });
+  const { user } = useContext(AuthContex);
 
   const serverUrl = "http://localhost:5000";
   const discountedPrice = (price - parseInt((price * discount) / 100)).toFixed(
@@ -48,9 +51,25 @@ const PayPalPayment = (product) => {
       })
       .then((data) => {
         if (data.status === "COMPLETED") {
-          toast.success("Your payment successful");
+          fetch(`${serverUrl}/api/v1/order/create`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              productId: _id,
+              email: user.email,
+            }),
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then(() => {
+              toast.success("Your payment successful",{
+                duration: 2000
+              });
+            });
         }
-        console.log(data);
       });
   };
   return (
