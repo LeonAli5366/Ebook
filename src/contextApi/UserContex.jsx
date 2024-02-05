@@ -24,7 +24,6 @@ const UserContex = ({ children }) => {
           if (data.status === "success") {
             setUser(data.userData);
           }
-          console.log(data);
         });
     }
   }, [refresh]);

@@ -17,7 +17,7 @@
 scale: 1.25;
 transition: all 5s ease-in-out;
 }
-.btn{
+.btn-transition{
   transition: 300ms;
 }
 .img{
