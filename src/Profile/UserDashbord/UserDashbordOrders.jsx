@@ -22,7 +22,7 @@ const UserDashbordOrders = ({ showPage }) => {
       });
   }, [user.email]);
   return (
-    <div className="overflow-x-auto">
+    <div className={`${showPage === "Orders" ? "" : "hidden"}`}>
       <table className="table ">
         {/* head */}
         <thead>

@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { AllProducts } from "../../contextApi/ProductContext";
 
 const Home = () => {
-  const {products} = useContext(AllProducts)
+  const { products } = useContext(AllProducts);
   return (
     <div className="flex flex-col">
       <div className="w-full">
@@ -19,6 +19,17 @@ const Home = () => {
             clickable: true,
             dynamicBullets: true,
           }}
+          breakpoints={{
+            480: {
+              slidesPerView: 1,
+            },
+            640:{
+              slidesPerView: 2
+            },
+            1024:{
+              slidesPerView:3
+            }
+          }}
           loop={true}
           autoplay={{
             delay: 2500,
@@ -26,7 +37,7 @@ const Home = () => {
           }}
           modules={[Pagination, Autoplay]}
           className="
-        h-[500px] w-full"
+          sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] h-[150px] w-full"
         >
           <SwiperSlide className="w-full h-full">
             <img
@@ -72,16 +83,16 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="w-full flex flex-col items-center pt-10">
-        <span className="text-3xl font-bold">Our Bookshelf</span>
-        <span>Find everything you want</span>
-        <div className="grid grid-cols-4 gap-4 w-full max-w-[1200px] pt-10">
+      <div className="w-full flex flex-col items-center px-[20%] sm:px-[25%] md:px-[15%] lg:px-[10%] xl:px-[5%] pt-10 mx-auto">
+        <span className="xl:text-3xl text-2xl font-bold">Our Bookshelf</span>
+        <span className="text-sm">Find everything you want</span>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-5 w-full max-w-[1200px] pt-10">
           {products.map((d) => (
             <Bookshelf key={d._id} d={d} />
           ))}
         </div>
       </div>
-      <div className="w-full flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center test">
         <Link
           to="/allproducts"
           className="border bg-white border-black hover:text-white hover:bg-black btn rounded text-black px-5 py-2"

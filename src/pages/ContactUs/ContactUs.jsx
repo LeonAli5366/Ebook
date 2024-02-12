@@ -1,7 +1,7 @@
 const ContactUs = () => {
     return (
-        <div className="flex flex-col items-center h-[100vh]">
-            <span className="uppercase text-[#4086C6] text-2xl font-medium tracking-wider mt-5">contact us</span>
+        <div className="flex flex-col items-center xl:px-0 px-[5%] h-[100vh]">
+            <span className="uppercase text-[#4086C6] md:text-2xl text-xl font-medium tracking-wider mt-5">contact us</span>
             <div className="max-w-[800px] w-full flex flex-col gap-5 mt-5">
             <div className=" w-full flex flex-row items-center gap-5">
                 <input type="text" name="" id="" placeholder="Your name" className="border w-full py-3 pl-2" />

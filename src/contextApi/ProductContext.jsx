@@ -8,7 +8,7 @@ const ProductContext = ({ children }) => {
   //  all state
   const [products, setProducts] = useState([]);
   const [refresh, setRefresh] = useState(1);
-  const [productSpiner, setProductSpiner] = useState(false);
+  const [productSpiner, setProductSpiner] = useState(true);
   // use effect
   useEffect(() => {
     setProductSpiner(true);
